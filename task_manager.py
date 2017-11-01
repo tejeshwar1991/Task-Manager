@@ -35,14 +35,24 @@ class processes_information(object):
         #print(psutil.pids())
         return psutil.pids()
 
-    def list_processes(self):
-        '''
-        Prints all currently running processes with username, pid, and process name
-        '''
-        for proc in psutil.process_iter(attrs=['pid', 'name', 'username']):
-            print(proc.info)
+    #def list_processes(self):
+    #    '''
+    #    Prints all currently running processes with username, pid, and process name
+    #    '''
+        #for proc in psutil.process_iter(attrs=['pid', 'name', 'username']):
+            #print(proc.info)
+            #print("STOP")
 
+class disk_info(object):
+    
+    def __init__(self, *args):
+        super(disk_info, self).__init__(*args)
+        print("Provides Disk Information")
 
+    def disk_usage(self):
+        return psutil.disk_usage('/')
+
+        
 if __name__  == "__main__" :
     cpuInfoObj = CPU_Information()
 
@@ -56,4 +66,10 @@ if __name__  == "__main__" :
     pid = processesInfoObj.pids_list_of_running_processes()
     
 
-    processesInfoObj.list_processes() #prints all processes with username, pid, and process name
+    #processesInfoObj.list_processes() #prints all processes with username, pid, and process name
+
+    diskInfoObj = disk_info()
+
+    diskUsageInfo = ()
+    diskUsageInfo = diskInfoObj.disk_usage()
+    print(diskUsageInfo)
